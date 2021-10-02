@@ -48,7 +48,7 @@ split
     if((current.terron_hp < old.terron_hp && current.terron_hp == 0 && current.ship_durability > 0 && current.datetime != 0) 
     || (current.blazer_hp < old.blazer_hp && current.blazer_hp == 0 && current.ship_durability > 0 && current.datetime != 0) 
     || (current.keller_hp < old.keller_hp && current.keller_hp == 0 && old.keller_hp < 2000) 
-    || (current.credits > old.credits && current.credits > 100000 && old.credits < 10000 && old.credits != 0 && current.ship_durability > 0 && current.datetime != 0))
+    || (current.credits > old.credits && current.credits > 100000 && old.credits < 10000 && old.credits != 0))
     {
         return true;
     }
