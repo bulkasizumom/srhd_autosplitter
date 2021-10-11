@@ -1,8 +1,3 @@
-/* 
- * author: _bulka_s_izumom
- * discord: _bulka_s_izumom#3860
- * speedrun.com: https://www.speedrun.com/user/_bulka_s_izumom
- * 
  * Что работает:
  * -таймер запускается в момент начала игры сразу после появления в центре рейнджеров
  * -первый сплит срабатывает в момент взятия кредита в бизнес-центре
@@ -29,9 +24,9 @@ state("Rangers")
     int blazer_hp:          0x460DC8, 0x3B8, 0x4, 0x0, 0x7C, 0xF8, 0x70;
     int keller_hp:          0x4542A8, 0xE4, 0x4, 0x0, 0x8, 0x4, 0xB0;
     int datetime:           0x453FAC, 0x18, 0xCC, 0x44, 0x128, 0x4, 0xC, 0x0;
-    int credits:            0x460DFC, 0x20, 0x4, 0x0, 0xC, 0xF8, 0x7C, 0xF0;
+    int credits:            0x4612D8, 0x3C, 0x4, 0x0, 0xF0;
     int ship_durability:    0x4612D8, 0x3C, 0x4, 0x0, 0xF8, 0x18;
-    int medals:             0x4612D8, 0x3C, 0x4, 0x0, 0x3EC;
+    int medals:             0x460DFC, 0x20, 0x4, 0x0, 0xC, 0x3EC;
 }
 
 start
@@ -45,14 +40,14 @@ start
 
 split
 {
-    if((current.terron_hp < old.terron_hp && current.terron_hp == 0 && current.ship_durability > 0 && current.datetime != 0) 
-    || (current.blazer_hp < old.blazer_hp && current.blazer_hp == 0 && current.ship_durability > 0 && current.datetime != 0) 
-    || (current.keller_hp < old.keller_hp && current.keller_hp == 0 && old.keller_hp < 2000) 
-    || (current.credits > old.credits && current.credits > 100000 && old.credits < 10000 && old.credits != 0))
+    if((current.terron_hp < old.terron_hp && current.terron_hp == 0 && old.terron_hp < 2000) 
+    || (current.blazer_hp < old.blazer_hp && current.blazer_hp == 0 && old.blazer_hp < 2000) 
+    || (current.keller_hp < old.keller_hp && current.keller_hp == 0 && old.keller_hp < 2000)
+    || (current.credits > old.credits && current.credits > 100000 && old.credits < 10000 && old.credits > 0))
     {
         return true;
     }
-    if(old.medals > 2 && current.medals == 0)
+    if(old.medals > 2 && current.medals == 0 && old.terron_hp == 0 && old.blazer_hp == 0 && old.keller_hp == 0)
     {
         return true;
     }
